@@ -1,0 +1,75 @@
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<head>
+  <title>S.T. | {% block title %}{% endblock title %}
+  </title>
+</head>
+
+<body>
+
+<div class="container-fluid">
+  <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+    <a href="/" id="top" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+      <img class="mr-3" src="https://img.icons8.com/external-justicon-lineal-color-justicon/64/000000/external-blog-graphic-design-justicon-lineal-color-justicon.png"/>
+      <span class="fs-4">&nbsp &nbsp A BLOG SITE</span>
+    </a>
+
+    <ul class="nav nav-pills">
+      <li class="nav-item"><a href={%url 'home'%} class="nav-link" aria-current="page">Home</a></li>
+      <li class="nav-item"><a href="{% url 'contact' %}" class="nav-link">Contact</a></li>
+      <li class="nav-item"><a href={%url 'about'%} class="nav-link">About</a></li>
+      
+      {% if user.is_authenticated %}
+      <li class="nav-item"><a href="#" class="btn btn-primary btn-md text-light disabled">Hi&nbsp!&nbsp{{ user.username }}</a></li>
+      <li class="nav-item">&nbsp&nbsp&nbsp</li>
+      <li class="nav-item"><a href="{% url 'logout' %}" class="btn btn-danger btn-md text-light">Log Out</a></li>
+      {% else %}
+      <li class="nav-item"><a href="{% url 'login' %}" class="btn btn-primary btn-md text-light">Login</a></li>
+      <li class="nav-item">&nbsp&nbsp&nbsp</li>
+      <li class="nav-item"><a href="{% url 'signup' %}" class="btn btn-danger btn-md text-light">Sign Up</a></li>
+      {% endif %}
+      {% comment %} <li class="nav-item"><a href="#" class="btn btn-primary btn-md text-light disabled">Hi&nbsp!&nbsp{{ user.username }}</a></li>
+      <li class="nav-item">&nbsp&nbsp&nbsp</li>
+      <li class="nav-item"><a href="{% url 'logout' %}" class="btn btn-danger btn-md text-light">Log Out</a></li> {% endcomment %}
+    </ul>
+  </header>
+</div>
+{% if user.is_authenticated %}
+<div class="container-fluid">
+  <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+      
+      <a href="{% url 'user_profile' %}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-light btn btn-dark">your blogs</a></li>
+      
+      <ul class="nav nav-pills">
+      <li class="nav-item"><a href="{% url 'post_new' %}" class="btn btn-success btn-md text-light">add a new post</a></li>
+      
+         </ul>
+  </header>
+</div>
+{% endif %}
+
+<div class="container" style= "margin-top: -25px; min-height:500px">
+{% block content %}
+{% endblock content %}
+</div>
+
+<a href="#top" class="btn btn-primary btn-md text-light position-sticky start-50 translate-middle-x">Go to Top</a>
+
+<div class="container-fluid">
+  <footer style="position:relative; left: 0;  bottom: 0;min-height: 50px;" class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+    <div class="col-md-4 d-flex align-items-center">
+      <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+        <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
+      </a>
+      <span class="text-muted">&copy; HARSH KUMAR</span>
+    </div>
+
+    <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+     <li><a href="https://www.instagram.com/harsh.kumar.25"><img src="https://img.icons8.com/fluency/48/000000/instagram-new.png"/></a><li>
+     <li><a href="https://facebook.com/harshkumar.kumar.547"><img style="height:48px" src="https://img.icons8.com/nolan/64/facebook.png"/></a></li>
+     <li><a href="https://linkedin.com/in/harsh-kumar-606232228"><img src="https://img.icons8.com/color/48/000000/linkedin.png"/></a></li>
+     <li><a href="https://github.com/harsh-kmr"><img src="https://img.icons8.com/fluency/48/000000/github.png"/></a></li>  
+    </ul>
+  </footer>
+</div>

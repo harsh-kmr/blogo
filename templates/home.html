@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Home
+{% endblock title %}
+
+{% block content %}
+<div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+  </div>
+  <div class="carousel-inner">
+    {% for first in latest %}
+    <div class="carousel-item active">
+      <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
+        <div class="col-md-6 px-0">
+          <h1 class="display-4 fst-italic">{{ first.title }}</h1>
+          <p class="lead my-3"> {{ first.preview }}</p>
+          <p class="lead mb-0"><a href="{% url 'post_detail' pk=first.pk %}" class="text-white fw-bold">Continue reading...</a></p>
+        </div>
+      </div>
+    
+    </div>
+    {% endfor %}
+      {% for foo in featured %}
+      <div class="carousel-item">
+      <div class="p-4 p-md-5 mb-4 text-white rounded bg-dark">
+        <div class="col-md-6 px-0">
+          <h1 class="display-4 fst-italic">{{ foo.title }}</h1>
+          <p class="lead my-3">{{ foo.preview }}</p>
+          <p class="lead mb-0"><a href="{% url 'post_detail' pk=foo.pk %}" class="text-white fw-bold">Continue reading...</a></p>
+        </div>
+      </div>
+    
+    </div>
+    {% endfor %}
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div> 
+
+
+  {% for post in object_list reversed %}
+  <div class="p-4 p-md-3 mb-4 text-dark rounded bg-white border border-dark">
+    
+      <h1 class="display-4 fst-italic">{{ post.title }}</h1>
+      <p class="lead my-3">{{ post.preview }}</p>
+      <p class="lead my-3">{{ post.author }}</p>
+      <p class="lead mb-0"><a href="{% url 'post_detail' pk=post.pk %}" class="text-dark fw-bold">Continue reading...</a></p>
+  </div>
+  {% endfor %}
+
+  {% endblock content %}

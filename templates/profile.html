@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}
+{{ user.username }}
+{% endblock title %}
+
+{% block content %}
+<div class="row mt-3 mb-3">
+    <div class="col-sm-4 mr-2 border border-dark rounded mb-3">
+<h1 class="text-center text-uppercase">hi! {{ user.username }}</h1>
+<h3 class="text-break text-wrap">First Name:</h3><button class="btn btn-outline-dark">{{ user.first_name }} </button>
+<h3 class="text-break text-wrap">Last Name: </h3><button class="btn btn-outline-dark">{{ user.last_name }} </button>
+<h3 class="text-break text-wrap">bio: </h3><button class="btn btn-outline-dark">{{ user.bio }} </button>
+<h3 class="text-break text-wrap">Email Id: </h3><button class="btn btn-outline-dark">{{ user.email }} </button>
+<h3 class="text-break text-wrap">Branch: </h3><button class="btn btn-outline-dark">{{ user.branch }} </button>
+<h3 class="text-break text-wrap">Year: </h3><button class="btn btn-outline-dark">{{ user.year }} </button>
+<hr style="background-color:red; height:4px">
+<a href="{% url 'edit_profile' %}" class="btn btn-primary btn-md text-light">Edit your profile</a>
+    </div>
+<div class="col-sm-8">
+{% for post in object_list reversed %}
+<div class="p-4 p-md-3 mb-4 text-dark rounded bg-white border border-dark">
+    
+    <h1 class="display-4 fst-italic">{{ post.title }}</h1>
+    <p class="lead my-3">{{ post.preview }}</p>
+    <p class="lead my-3">{{ post.author }}</p>
+    <p class="lead mb-0"><a href="{% url 'post_detail' pk=post.pk %}" class="text-dark fw-bold">Continue reading...</a></p>
+</div>
+{% endfor %}
+</div>
+</div>
+{% endblock content %}

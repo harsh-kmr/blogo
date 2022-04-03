@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Update{% endblock title %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+<div class="container row mb-3 position-relative" style="background-image:linear-gradient(135deg, brown, lightblue)">
+         <div class="col">
+        <div class="position-sticky">
+          <div class="p-5 mb-3 text-light rounded" style="background-image:linear-gradient(45deg, black, grey)">
+            <h2>Update Profile</h2>
+            <form method="post">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <br>
+            <button class="w-100 btn btn-primary btn-md" type="submit">Save</button>
+            </form>
+            <br>
+        </div>
+    </div>
+    </div>
+    </div>
+    {% endblock content %}

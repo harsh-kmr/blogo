@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}delete | {{ post.title }}{% endblock title %}
+{% block content %}
+{% if user.is_authenticated and user.id == post.author.id %}
+<div class="col-lg-5 position-absolute top-50 start-50 translate-middle">
+<div class="card bg-danger text-white text-center p-3 ">
+<h1>Delete post</h1>
+<form action="" method="post">{% csrf_token %}
+<p>Are you sure you want to delete "{{ post.title }}"?</p>
+<a href="{% url 'post_detail' pk=post.pk %}" class="w-25 btn btn-light btn-md"> no</a>
+&nbsp &nbsp &nbsp
+<input type="submit" class="w-25 btn btn-light btn-md" value="Confirm" />
+</form>
+</div>
+</div>
+{% else%}
+<div class="col-lg-5 position-absolute top-50 start-50 translate-middle">
+    <div class="card bg-danger text-white text-center p-3 ">    
+ <h1>You have no permission to Delete</h1>
+    </div></div>
+
+ {% endif %}
+{% endblock content %}

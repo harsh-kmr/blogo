@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Log In{% endblock title %}
+{% block content %}
+<div class="container row mb-3 position-relative" style="min-height:500px; background-image:linear-gradient(135deg, brown, lightblue)">
+<div class="col-md-8">
+    <div class="col-lg-5 position-absolute top-50 translate-middle-y">
+    <div class="card bg-primary text-white text-center p-3">
+      <figure class="mb-0">
+        <blockquote class="blockquote">
+          <p>First, solve the problem. Then, write the code</p>
+        </blockquote>
+        <figcaption class="blockquote-footer mb-0 text-white">
+          John Johnson 
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</div>
+  <div class="col-md-4">
+    <div class="position-absolute top-50 translate-middle-y">
+      <div class="p-5 mb-3 text-light rounded" style="background-image:linear-gradient(45deg, black, grey)">
+        <h2>Log In</h2>
+        <form method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <br>
+        <button class="w-100 btn btn-primary btn-md" type="submit">Log In</button>
+        </form>
+        <br>
+        <p>Don't have a account &nbsp<a href="{% url 'signup' %}">Sign up</a></p>
+    </div>
+</div>
+</div>
+</div>
+{% endblock content %}

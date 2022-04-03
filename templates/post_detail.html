@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}{{ post.title }}{% endblock title %}
+{% block content %}
+<div class="container row mb-3 position-relative" style="min-height:500px;">
+<div class="col-md-8">    
+<div class="post-entry">
+<h2>{{ post.title }}</h2>
+<hr>
+<p class="text-break text-wrap">{{ post.body }}</p>
+<hr>
+
+</div>
+</div>
+<div class="col-md-4">
+    <h3>{{ post.author.first_name }} {{ post.author.last_name }}</h3>
+    <p style="color:grey">{{ post.author.bio }}</p>
+    <p>Time stamp:{{ post.post_time}}
+{% if user.is_authenticated and user.id == post.author.id %}
+<p><a href="{% url 'post_edit' post.pk %}">+ Edit Blog Post</a>
+</p>
+<p><a href="{% url 'post_delete' post.pk %}">+ Delete Blog Post</a></p>
+{% endif %}
+</div>
+<div>
+    {% if user.is_authenticated %} 
+    <form action="{% url 'post_like' object.id %}" method= "POST">
+        {% csrf_token %}
+        {% if post_is_liked %}
+        <button type="submit" name="post_id" value="{{ object.id }}" class="btn">
+            <img src="https://img.icons8.com/color/48/000000/like--v3.png"/>
+        </button>
+        {% else %}
+        <button type="submit" name="post_id" value="{{ object.id }}" class="btn">
+            <img src="https://img.icons8.com/ios/50/000000/like--v1.png"/>    
+        </button>
+        {% endif %}
+        {% else %}
+        <a href="{% url 'login' %}?next={{request.path}}" class="btn btn-info"> login to like this post<a>
+    {% endif %}
+    <strong class="text-secondary">{{ num_of_like }} like</strong>
+        </div>
+    {% endblock content %}
+    

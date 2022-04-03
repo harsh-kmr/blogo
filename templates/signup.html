@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block title %}Sign Up{% endblock title %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+<div class="container row mb-3 position-relative" style="background-image:linear-gradient(135deg, brown, lightblue)">
+    <div class="col-md-8">
+        <div class="col-lg-5 position-absolute top-50 translate-middle-y">
+        <div class="card bg-primary text-white text-center p-3">
+          <figure class="mb-0">
+            <blockquote class="blockquote">
+              <p>Perfection is achieved not when there is nothing more to add, but rather when there is nothing more to take away.</p>
+            </blockquote>
+            <figcaption class="blockquote-footer mb-0 text-white">
+              Antoine de Saint-Exupery
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="col-lg-5 position-absolute top-0 mt-5 pt-5">
+        <div class="card bg-primary text-white text-center p-3">
+          <figure class="mb-0">
+            <blockquote class="blockquote">
+              <p>Make it work, make it right, make it fast.</p>
+            </blockquote>
+            <figcaption class="blockquote-footer mb-0 text-white">
+              Kent Beck
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="col-lg-5 position-absolute bottom-0 mb-5 pb-5">
+        <div class="card bg-primary text-white text-center p-3">
+          <figure class="mb-0">
+            <blockquote class="blockquote">
+              <p>Simplicity is the soul of efficiency.</p>
+            </blockquote>
+            <figcaption class="blockquote-footer mb-0 text-white">
+              Austin Freeman
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+
+
+    </div>
+      <div class="col-md-4">
+        <div class="position-sticky">
+          <div class="p-5 mb-3 text-light rounded" style="background-image:linear-gradient(45deg, black, grey)">
+            <h2>Sign up</h2>
+            <form method="post">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <br>
+            <button class="w-100 btn btn-primary btn-md" type="submit">Sign Up</button>
+            </form>
+            <br>
+            <p>Already have a account &nbsp<a href="{% url 'login' %}">LOG IN</a></p>
+        </div>
+    </div>
+    </div>
+    </div>
+    {% endblock content %}
